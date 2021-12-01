@@ -4,6 +4,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LandingPage } from './pages/landing/landing.page';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: LandingPage
+  },
 	{
 		path: 'login',
 		loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginPageModule)
@@ -20,15 +24,15 @@ const routes: Routes = [
 		path: 'recover',
 		loadChildren: () => import('./pages/recover/recover.module').then((m) => m.RecoverPageModule)
 	},
-  {
-		path: 'landing', component: LandingPage
-	},
-	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  {
-		path: '',
+	{
+		path: 'tabs',
 		loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule)
 	},
 	{ path: '**', component: PageNotFoundComponent },
+  {
+    path: 'status',
+    loadChildren: () => import('./pages/status/status.module').then( m => m.StatusPageModule)
+  }
 	// Wildcard route
 ];
 @NgModule({
