@@ -6,56 +6,57 @@
 
 <ion-content>
   <div class="flex-center">
-    <form #form="ngForm" (ngSubmit)="authService.login()">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title class="ion-text-center">Registration</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Display Name</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-          <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label position="floating">First Name</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label position="floating">Last Name</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input type="email"></ion-input>
-          </ion-item>
-          <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label position="floating">Password</ion-label>
-                <ion-input type="password"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label position="floating">Confirm Password</ion-label>
-                <ion-input type="password"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-item>
-            <ion-label>Accept Terms of Service</ion-label>
-            <ion-checkbox slot="start" color="dark"></ion-checkbox>
-          </ion-item>
-          <ion-button expand="full">Register</ion-button>
-          <ion-button expand="full" fill="clear" [routerLink]="['/login']">Login</ion-button>
-        </ion-card-content>
-      </ion-card>
+    <!-- <form #form="ngForm" (ngSubmit)="authService.login()"> -->
+    <form #form="ngForm">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Registration</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Display Name</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-item>
+          <ion-label>Accept Terms of Service</ion-label>
+          <ion-checkbox slot="start" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-button expand="full">Register</ion-button>
+        <ion-button expand="full" fill="clear" [routerLink]="['/login']">Login</ion-button>
+      </ion-card-content>
+    </ion-card>
     </form>
   </div>
 </ion-content>
