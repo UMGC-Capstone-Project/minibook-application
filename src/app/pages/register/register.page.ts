@@ -12,7 +12,7 @@ export class RegisterPage implements OnInit {
 	isSubmitted: boolean = false;
 
 	registrationForm = this.formBuilder.group({
-    displayname: ['JohnDoe51', [Validators.required]],
+    displayname: ['JohnDoe42', [Validators.required]],
     firstname: ['john', [Validators.required]],
     lastname: ['doe', [Validators.required]],
 		email: [
