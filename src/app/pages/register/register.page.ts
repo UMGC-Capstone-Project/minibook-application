@@ -15,6 +15,7 @@ const API_URL: string = 'https://api.minibook.io';
 })
 export class RegisterPage implements OnInit {
 	isSubmitted: boolean = false;
+	isError: IError;
 
 	form: IUserFormGroup = this.formBuilder.group({
 		displayname: [ 'JohnDoe42', [ Validators.required ] ],
@@ -49,21 +50,39 @@ export class RegisterPage implements OnInit {
 			return false;
 		}
 		const { passwordConfirm, termsOfService, ...results } = this.form.value;
-    this.postRequest('https://api.minibook.io/v1/auth/register', results).subscribe((results) => {
+    //... move all this logic out to an HTTPServiceModule
+		const postResults = this.postRequest(
+			'https://api.minibook.io/v1/auth/register',
+			results
+		).subscribe((results) => {
 			const _results: UserDto = results.data;
+			// probably should do more error handling here ex network connection error.
+			if (results.status === 400) {
+				console.log('an erro has happened ', results.data);
+				this.isError = results.data as IError;
+				return;
+			}
+			this.router.navigate([ '/confirmation' ]);
 		});
+		setTimeout(() => {
+			postResults.unsubscribe();
+			this.isError = {
+				statusCode: 200,
+				message: 'Submit'
+			};
+		}, 2000);
 	}
 
 	postRequest(url: string, data: any): Observable<HttpResponse> {
 		const options: HttpOptions = {
 			url,
 			data: data,
-      headers: {
+			headers: {
 				'Content-Type': 'application/json'
-			},
+			}
 		};
-    return from(Http.post(options));
-  }
+		return from(Http.post(options));
+	}
 }
 
 interface IUser {
@@ -95,4 +114,9 @@ interface UserDto {
 	id: number;
 	email: string;
 	displayname: string;
+}
+
+interface IError {
+	message: string;
+	statusCode: number;
 }

@@ -4,10 +4,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LandingPage } from './pages/landing/landing.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LandingPage
-  },
+	{
+		path: '',
+		component: LandingPage
+	},
 	{
 		path: 'login',
 		loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginPageModule)
@@ -28,16 +28,17 @@ const routes: Routes = [
 		path: 'tabs',
 		loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule)
 	},
-	{ path: '**', component: PageNotFoundComponent },
-  {
-    path: 'status',
-    loadChildren: () => import('./pages/status/status.module').then( m => m.StatusPageModule)
-  },
-  {
-    path: 'generic-response',
-    loadChildren: () => import('./pages/generic-response/generic-response.module').then( m => m.GenericResponsePageModule)
-  }
+	{
+		path: 'confirmation',
+		loadChildren: () =>
+			import('./pages/generic-response/generic-response.module').then((m) => m.GenericResponsePageModule)
+	},
+	{
+		path: 'status',
+		loadChildren: () => import('./pages/status/status.module').then((m) => m.StatusPageModule)
+	},
 	// Wildcard route
+	{ path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
 	imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ],
