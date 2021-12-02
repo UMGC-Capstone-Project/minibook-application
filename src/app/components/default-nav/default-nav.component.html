@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ng-container *ngIf="isAuthenticated">
+    <ng-container *ngIf="isAuthenticated; else elseTemplate">
       <ion-buttons slot="secondary">
         <ion-button>
           <ion-icon slot="icon-only" name="person-circle"></ion-icon>
@@ -15,6 +15,20 @@
         </ion-button>
       </ion-buttons>
     </ng-container>
-    <ion-title>Minibook</ion-title>
+    <ng-template #elseTemplate>
+      <ion-buttons slot="secondary">
+        <ion-button expand="full" fill="clear" [routerLink]="['/login']">
+          Sign In
+        </ion-button>
+        <ion-button expand="full" fill="clear" [routerLink]="['/register']">
+          Sign Up
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+    <ion-button fill="clear" color="dark" [routerLink]="['/']">
+      <ion-title>
+        Minibook
+      </ion-title>
+    </ion-button>
   </ion-toolbar>
 </ion-header>

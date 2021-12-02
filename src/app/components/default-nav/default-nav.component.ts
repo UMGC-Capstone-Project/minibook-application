@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { SettingsComponent } from '../settings/settings.component';
 
@@ -23,5 +23,4 @@ export class DefaultNavComponent implements OnInit {
 		});
 		return await popover.present();
 	}
-
 }
