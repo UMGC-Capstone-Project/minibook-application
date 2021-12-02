@@ -1,0 +1,18 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+name: minibook-application
+region: sgp
+static_sites:
+- build_command: npm run build
+  environment_slug: node-js
+  github:
+    branch: master
+    deploy_on_push: true
+    repo: UMGC-Capstone-Project/minibook-application
+  name: minibook-application
+  output_dir: www
+  routes:
+  - path: /
+  catchall_document: index.html
+  source_dir: /
