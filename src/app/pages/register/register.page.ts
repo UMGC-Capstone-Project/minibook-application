@@ -2,6 +2,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http, HttpOptions , HttpResponse } from '@capacitor-community/http';
+import { Platform } from '@ionic/angular';
+import { from } from 'rxjs';
+
+const API_URL: string =  'https://api.minibook.io';
 
 @Component({
   selector: 'app-register',
@@ -49,4 +54,15 @@ export class RegisterPage implements OnInit {
 		console.log(this.registrationForm.value);
 	}
 
+  onAPITest() {
+    const options: HttpOptions = {
+      url: 'https://api.minibook.io/',
+    };
+    from(Http.get(options)).subscribe((res: any) => {
+      console.log(res);
+    })
+  }
+  
+
 }
+
