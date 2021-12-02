@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'status',
     loadChildren: () => import('./pages/status/status.module').then( m => m.StatusPageModule)
+  },
+  {
+    path: 'generic-response',
+    loadChildren: () => import('./pages/generic-response/generic-response.module').then( m => m.GenericResponsePageModule)
   }
 	// Wildcard route
 ];

@@ -5,7 +5,7 @@
         <ion-card-title class="ion-text-center">Login</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <form [formGroup]="ionicForm" (ngSubmit)="onSubmit()" novalidate *ngIf="ionicForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate *ngIf="loginForm">
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
             <ion-input formControlName="email" type="email" required></ion-input>
