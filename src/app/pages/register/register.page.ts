@@ -70,7 +70,8 @@ export class RegisterPage implements OnInit {
 				statusCode: 200,
 				message: 'Submit'
 			};
-		}, 2000);
+			this.isError = null;
+		}, 5000);
 	}
 
 	postRequest(url: string, data: any): Observable<HttpResponse> {
