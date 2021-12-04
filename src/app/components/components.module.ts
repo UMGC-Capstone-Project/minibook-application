@@ -1,3 +1,5 @@
+import { PopoverComponent } from './popover/popover.component';
+import { SettingsComponent } from './default-nav/popover/settings.component';
 import { DefaultNavComponent } from './default-nav/default-nav.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
@@ -7,10 +9,12 @@ import { AnimBirdComponent } from './anim-bird/anim-bird.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 
-const components = [ DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent ];
+const components = [ DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent ];
 
 @NgModule({
-	imports: [ RouterModule, IonicModule.forRoot(), CommonModule ],
+	imports: [ 
+		IonicModule,
+		RouterModule, IonicModule.forRoot(), CommonModule ],
 	declarations: components,
 	exports: components,
 	schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

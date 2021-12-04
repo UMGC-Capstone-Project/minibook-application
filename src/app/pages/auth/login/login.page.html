@@ -1,11 +1,11 @@
 <ion-content>
   <div class="flex-center">
-    <ion-card>
+    <ion-card style="min-width: 520px;">
       <ion-card-header>
         <ion-card-title class="ion-text-center">Login</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate *ngIf="loginForm">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate *ngIf="form">
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
             <ion-input formControlName="email" type="email" required></ion-input>

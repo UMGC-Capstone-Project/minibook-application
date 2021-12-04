@@ -1,5 +1,5 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, HttpOptions, HttpResponse } from '@capacitor-community/http';
@@ -34,7 +34,10 @@ export class RegisterPage implements OnInit {
 		termsOfService: [ false, [ Validators.required, Validators.requiredTrue ] ]
 	}) as IUserFormGroup;
 
-	constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {}
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+		private formBuilder: FormBuilder) {}
 
 	ngOnInit() {}
 
@@ -50,7 +53,7 @@ export class RegisterPage implements OnInit {
 			return false;
 		}
 		const { passwordConfirm, termsOfService, ...results } = this.form.value;
-    //... move all this logic out to an HTTPServiceModule
+		//... move all this logic out to an HTTPServiceModule
 		const postResults = this.postRequest(
 			'https://api.minibook.io/v1/auth/register',
 			results

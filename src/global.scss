@@ -26,8 +26,20 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.ion-post {
+	padding-top: 55px;
+}
+
+.popover-top-right .popover-content {
+	transform: translateY(-120%) !important;
+}
+
+.my-custom-pop .popover-content {
+    min-width: 280px;
 }

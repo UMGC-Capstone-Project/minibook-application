@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthModule } from './pages/auth/auth.module';
 import { LandingPage } from './pages/landing/landing.page';
 
 const routes: Routes = [
@@ -9,21 +10,29 @@ const routes: Routes = [
 		component: LandingPage
 	},
 	{
-		path: 'login',
-		loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginPageModule)
+		path: '',
+		loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthModule)
 	},
+	// {
+	// 	path: 'login',
+	// 	loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
+	// },
 	{
 		path: 'dashboard',
 		loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule)
 	},
 	{
 		path: 'register',
-		loadChildren: () => import('./pages/register/register.module').then((m) => m.RegisterPageModule)
+		loadChildren: () => import('./pages/auth/register/register.module').then((m) => m.RegisterPageModule)
 	},
 	{
 		path: 'recover',
-		loadChildren: () => import('./pages/recover/recover.module').then((m) => m.RecoverPageModule)
+		loadChildren: () => import('./pages/auth/recover/recover.module').then((m) => m.RecoverPageModule)
 	},
+	{
+		path: 'profile',
+		loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+	  },
 	{
 		path: 'tabs',
 		loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule)
@@ -38,7 +47,8 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/status/status.module').then((m) => m.StatusPageModule)
 	},
 	// Wildcard route
-	{ path: '**', component: PageNotFoundComponent }
+	{ path: '**', component: PageNotFoundComponent },
+
 ];
 @NgModule({
 	imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ],

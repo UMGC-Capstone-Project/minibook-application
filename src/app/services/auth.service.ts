@@ -1,34 +1,19 @@
-import {Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { Http, HttpResponse } from '@capacitor-community/http';
 import { Platform } from '@ionic/angular';
-
-const API_URL: string =  'https://api.minibook.io';
+import {User} from '../pages/auth/model/User';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class AuthService {
+	BASE_URL = 'https://api.minibook.io';
 
-  plt: string;
-  localhost:string = 'localhost';
+	constructor(private httpClient: HttpClient) {}
 
-  constructor(private platform: Platform) {
-    this.plt = this.platform.is('mobileweb') ? 'web' :
-    this.platform.is('ios') ? 'ios' : 'android'
-    this.localhost ="192.168.0.7"
-  }
-
-  register(value: any): void {
-    const results = Http.get({
-      url: API_URL,
-    })
-
-    console.log(results);
-  }
-
-  login() {
-    console.log(`login: `, 5)
-  }
+	login(email: string, password: string): Observable<User> {
+		return this.httpClient.post<User>(`${this.BASE_URL}/v1/auth/login`, { email, password });
+	}
 }

@@ -1,6 +1,14 @@
+import { isLoggedIn, isLoggedOut } from './../../pages/auth/auth.selectors';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { SettingsComponent } from '../settings/settings.component';
+import { SettingsComponent } from './popover/settings.component';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/reducers';
+import { select, Store } from '@ngrx/store';
+import { AuthState } from 'src/app/pages/auth/reducers/module';
+import { Router } from '@angular/router';
+import { logout } from 'src/app/pages/auth/auth.actions';
+import { PopoverComponent } from '../popover/popover.component';
 
 @Component({
 	selector: 'app-default-nav',
@@ -10,17 +18,42 @@ import { SettingsComponent } from '../settings/settings.component';
 export class DefaultNavComponent implements OnInit {
 	isAuthenticated: boolean = false;
 
-	constructor(public popoverController: PopoverController) {}
+	isLoggedIn$: Observable<boolean>;
+	isLoggedOut$: Observable<boolean>;
+	private isPopover: boolean = false;
+
+	constructor(private store: Store<AppState>, public popoverController: PopoverController, private router: Router) {
+		this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
+		this.isLoggedOut$ = this.store.pipe(select(isLoggedOut));
+	}
 
 	ngOnInit() {}
 
-	async settingsPopover(ev: any) {
+	async presentPopover(ev: any) {
+		if (this.isPopover) {
+			return;
+		}
 		const popover = await this.popoverController.create({
-			component: SettingsComponent,
+			component: PopoverComponent,
 			event: ev,
-			mode: 'md',
-			translucent: false
+			cssClass: 'my-custom-pop',
+			translucent: false,
 		});
+		this.isPopover = true;
+
+		popover.onDidDismiss().then(()=> {
+			this.isPopover = false;
+		})
+
 		return await popover.present();
+	}
+
+	profile() {
+		this.router.navigateByUrl('/profile');
+	}
+
+	logout() {
+		this.store.dispatch(logout());
+		this.router.navigateByUrl('/');
 	}
 }

@@ -1,3 +1,34 @@
+
 <ion-content>
-  <app-default-nav> </app-default-nav>
+  <div id="container">
+    <ion-card>
+      <ion-header>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://dev.minibook.io/static/media/user-photo.bb7d23a2.jpg">
+          </ion-avatar>
+          <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" placeholder="Anything you want to post?"></ion-input>
+          <ion-button fill="outline" shape="round" size="medium" expand="full">Post</ion-button>
+        </ion-item>
+      </ion-header>
+      <ion-card-content class="ion-text-center">
+        <ion-button color="medium" fill="clear" disabled="true">
+          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
+          <ion-text>Photo</ion-text>
+        </ion-button>
+        <ion-button color="medium" fill="clear" disabled="true">
+          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
+          <ion-text>Video</ion-text>
+        </ion-button>
+        <!-- <ion-button color="medium" fill="clear" disabled="true">
+          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
+          <ion-text>Event</ion-text>
+        </ion-button> -->
+        <!-- <ion-button color="medium" fill="clear" disabled="true">
+          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
+          <ion-text>Message</ion-text>
+        </ion-button> -->
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
