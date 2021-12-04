@@ -8,8 +8,9 @@ import { DefaultFooterComponent } from './default-footer/default-footer.componen
 import { AnimBirdComponent } from './anim-bird/anim-bird.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
+import { CreatePostComponent } from './create-post/create-post.component';
 
-const components = [ DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent ];
+const components = [ CreatePostComponent, DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent ];
 
 @NgModule({
 	imports: [ 

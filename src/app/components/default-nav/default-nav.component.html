@@ -8,10 +8,10 @@
   <ion-toolbar>
     <ng-container *ngIf="isLoggedOut$ | async">
       <ion-buttons slot="secondary">
-        <ion-button expand="full" fill="clear" [routerLink]="['/login']">
+        <ion-button expand="full" fill="clear" [routerLink]="['/auth/login']">
           Sign In
         </ion-button>
-        <ion-button expand="full" fill="clear" [routerLink]="['/register']">
+        <ion-button expand="full" fill="clear" [routerLink]="['/auth/register']">
           Sign Up
         </ion-button>
       </ion-buttons>

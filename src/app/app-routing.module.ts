@@ -2,21 +2,20 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
-import { LandingPage } from './pages/landing/landing.page';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: LandingPage
+		loadChildren: () => import('./pages/home/home.module').then((m) => m.HomePageModule)
 	},
 	{
-		path: '',
+		path: 'auth',
 		loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthModule)
 	},
-	// {
-	// 	path: 'login',
-	// 	loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
-	// },
+	{
+		path: 'login',
+		loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
+	},
 	{
 		path: 'dashboard',
 		loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule)
@@ -31,8 +30,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'profile',
-		loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-	  },
+		loadChildren: () => import('./pages/profile/profile.module').then((m) => m.ProfilePageModule)
+	},
 	{
 		path: 'tabs',
 		loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule)
@@ -48,7 +47,10 @@ const routes: Routes = [
 	},
 	// Wildcard route
 	{ path: '**', component: PageNotFoundComponent },
-
+	{
+		path: 'login',
+		loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
+	}
 ];
 @NgModule({
 	imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ],

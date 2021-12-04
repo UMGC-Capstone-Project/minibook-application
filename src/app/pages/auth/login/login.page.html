@@ -1,3 +1,4 @@
+<app-default-nav></app-default-nav>
 <ion-content>
   <div class="flex-center">
     <ion-card style="min-width: 520px;">
@@ -35,9 +36,9 @@
           </ion-item>
           <ion-row>
             <ion-col>
-              <ion-button expand="full" fill="clear" [routerLink]="['/recover']">Forgot Email/Password</ion-button>
+              <ion-button expand="full" fill="clear" [routerLink]="['//auth/recover']">Forgot Email/Password</ion-button>
               <ion-button type="submit" color="dark" expand="block">Login</ion-button>
-              <ion-button expand="full" fill="clear" [routerLink]="['/register']">Register</ion-button>
+              <ion-button expand="full" fill="clear" [routerLink]="['/auth//register']">Register</ion-button>
             </ion-col>
           </ion-row>
         </form>
@@ -45,3 +46,4 @@
     </ion-card>
   </div>
 </ion-content>
+<app-default-footer></app-default-footer>

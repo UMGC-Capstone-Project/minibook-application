@@ -1,13 +1,13 @@
-import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/reducers';
-import {User} from '../model/User';
 import { noop } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { AppState } from 'src/app/reducers';
 import { AuthActions } from '../action-types';
+import { User } from '../model/User';
+import { AuthService } from './../../../services/auth.service';
 
 @Component({
 	selector: 'app-login',
@@ -17,9 +17,13 @@ import { AuthActions } from '../action-types';
 export class LoginPage implements OnInit {
 	isSubmitted: boolean = false;
 	form: FormGroup;
-	
 
-	constructor(private store: Store<AppState>, public formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+	constructor(
+		private store: Store<AppState>,
+		public formBuilder: FormBuilder,
+		private authService: AuthService,
+		private router: Router
+	) {
 		this.form = this.formBuilder.group({
 			email: [
 				'john@minibook.io',
@@ -46,14 +50,19 @@ export class LoginPage implements OnInit {
 		}
 
 		const { email, password } = this.form.value as User;
-		this.authService.login(email, password)
+		this.authService
+			.login(email, password)
 			.pipe(
-				tap(user => {
+				tap((user) => {
 					console.log(user);
-					this.store.dispatch(AuthActions.login({user: {
-						email: '',
-						password: ''
-					}}))
+					this.store.dispatch(
+						AuthActions.login({
+							user: {
+								email: '',
+								password: ''
+							}
+						})
+					);
 					this.router.navigateByUrl('/dashboard');
 				})
 			)

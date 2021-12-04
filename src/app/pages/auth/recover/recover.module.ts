@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +11,7 @@ import { RecoverPage } from './recover.page';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     ReactiveFormsModule,
     CommonModule,
     FormsModule,

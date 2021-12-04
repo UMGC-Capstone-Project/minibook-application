@@ -1,3 +1,4 @@
+<app-default-nav></app-default-nav>
 <ion-content>
   <div class="flex-center">
     <ion-card>
@@ -11,9 +12,10 @@
             <ion-input formControlName="email" type="email" required></ion-input>
           </ion-item>
           <ion-button expand="full">Submit</ion-button>
-          <ion-button expand="full" fill="clear" [routerLink]="['/login']">Login</ion-button>
+          <ion-button expand="full" fill="clear" [routerLink]="['/auth/login']">Login</ion-button>
         </form>
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
+<app-default-footer></app-default-footer>

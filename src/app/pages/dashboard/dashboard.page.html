@@ -1,34 +1,28 @@
+<app-default-nav></app-default-nav>
 
 <ion-content>
-  <div id="container">
-    <ion-card>
-      <ion-header>
+  <div class="ion-padding">
+    <app-create-post></app-create-post>
+    <div class="ion-padding">
+      <ion-list *ngFor="let item of users; let lastItem = last;">
         <ion-item>
-          <ion-avatar slot="start">
-            <img src="https://dev.minibook.io/static/media/user-photo.bb7d23a2.jpg">
+          <ion-avatar slot="end">
+            <img src="https://imgs.minibook.io/common/dave.jpg">
           </ion-avatar>
-          <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" placeholder="Anything you want to post?"></ion-input>
-          <ion-button fill="outline" shape="round" size="medium" expand="full">Post</ion-button>
+          <ion-label>
+            <h3>{{item.name}}</h3>
+            <p>dolor sit amet</p>
+            <p>consectetur adipiscing elit. Duis ut urna neque.</p>
+          </ion-label>
         </ion-item>
-      </ion-header>
-      <ion-card-content class="ion-text-center">
-        <ion-button color="medium" fill="clear" disabled="true">
-          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
-          <ion-text>Photo</ion-text>
-        </ion-button>
-        <ion-button color="medium" fill="clear" disabled="true">
-          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
-          <ion-text>Video</ion-text>
-        </ion-button>
-        <!-- <ion-button color="medium" fill="clear" disabled="true">
-          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
-          <ion-text>Event</ion-text>
-        </ion-button> -->
-        <!-- <ion-button color="medium" fill="clear" disabled="true">
-          <ion-icon color="secondary ion-padding" name="image-outline"></ion-icon>
-          <ion-text>Message</ion-text>
-        </ion-button> -->
-      </ion-card-content>
-    </ion-card>
+        <ion-item-divider *ngIf="!lastItem"></ion-item-divider>
+      </ion-list>
+      <ion-infinite-scroll threshold="250px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
   </div>
 </ion-content>
+
+<app-default-footer></app-default-footer>
