@@ -33,10 +33,6 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/profile/profile.module').then((m) => m.ProfilePageModule)
 	},
 	{
-		path: 'tabs',
-		loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule)
-	},
-	{
 		path: 'confirmation',
 		loadChildren: () =>
 			import('./pages/generic-response/generic-response.module').then((m) => m.GenericResponsePageModule)
