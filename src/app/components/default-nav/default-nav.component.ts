@@ -1,3 +1,4 @@
+import { AuthStoreService } from './../../pages/auth/services/auth-store.service';
 import { isLoggedIn, isLoggedOut } from './../../pages/auth/auth.selectors';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
@@ -16,15 +17,9 @@ import { PopoverComponent } from '../popover/popover.component';
 	styleUrls: [ './default-nav.component.scss' ]
 })
 export class DefaultNavComponent implements OnInit {
-	isAuthenticated: boolean = false;
-
-	isLoggedIn$: Observable<boolean>;
-	isLoggedOut$: Observable<boolean>;
 	private isPopover: boolean = false;
 
-	constructor(private store: Store<AppState>, public popoverController: PopoverController, private router: Router) {
-		this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
-		this.isLoggedOut$ = this.store.pipe(select(isLoggedOut));
+	constructor(public readonly authStoreService: AuthStoreService, public popoverController: PopoverController, private router: Router) {
 	}
 
 	ngOnInit() {}
@@ -53,7 +48,7 @@ export class DefaultNavComponent implements OnInit {
 	}
 
 	logout() {
-		this.store.dispatch(logout());
-		this.router.navigateByUrl('/');
+		this.authStoreService.logout()
+		this.router.navigateByUrl('/')
 	}
 }

@@ -1,6 +1,7 @@
 <ion-content>
   <div class="flex-center">
-    <ion-card style="min-width: 520px;">
+    <!-- <ion-card style="min-width: 520px;"> -->
+    <ion-card [style.width]="getWidth()">
       <ion-card-header>
         <ion-card-title class="ion-text-center">Login</ion-card-title>
       </ion-card-header>
@@ -35,7 +36,8 @@
           </ion-item>
           <ion-row>
             <ion-col>
-              <ion-button expand="full" fill="clear" [routerLink]="['//auth/recover']">Forgot Email/Password</ion-button>
+              <ion-button expand="full" fill="clear" [routerLink]="['//auth/recover']">Forgot Email/Password
+              </ion-button>
               <ion-button type="submit" color="dark" expand="block">Login</ion-button>
               <ion-button expand="full" fill="clear" [routerLink]="['/auth//register']">Register</ion-button>
             </ion-col>

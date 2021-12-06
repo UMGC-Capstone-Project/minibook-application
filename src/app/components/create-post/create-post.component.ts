@@ -1,3 +1,4 @@
+import { AuthStoreService } from './../../pages/auth/services/auth-store.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CreatePostComponent implements OnInit {
   @Input() message:string;
-  constructor() { }
+  constructor(public authStoreService:AuthStoreService) { }
 
   ngOnInit() {}
 

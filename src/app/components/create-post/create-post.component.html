@@ -2,7 +2,7 @@
   <ion-header>
     <ion-item>
       <ion-avatar slot="start">
-        <img src="https://dev.minibook.io/static/media/user-photo.bb7d23a2.jpg">
+        <img src="{{(authStoreService.user$ |async).avatar}}">
       </ion-avatar>
       <ion-input autocorrect="on" class="custom-class" autofocus="on" clearInput="true" clearOnEdit="true"
         placeholder="What is the meaning of life?"></ion-input>

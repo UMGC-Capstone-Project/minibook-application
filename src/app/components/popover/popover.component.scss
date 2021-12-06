@@ -1,3 +1,8 @@
 .item-divider {
-    border-bottom: 1px solid var(--ion-color-light-tint);
+	border-bottom: 1px solid var(--ion-color-light-tint);
+}
+
+.pointer {
+	cursor: pointer;
+	color: var(--ion-color-primary, #3880ff);
 }

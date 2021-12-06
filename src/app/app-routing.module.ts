@@ -17,6 +17,10 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
 	},
 	{
+		path: 'settings',
+		loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+	  },
+	{
 		path: 'dashboard',
 		loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule)
 	},
@@ -43,10 +47,11 @@ const routes: Routes = [
 	},
 	// Wildcard route
 	{ path: '**', component: PageNotFoundComponent },
-	{
-		path: 'login',
-		loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule)
-	}
+  {
+    path: 'help',
+    loadChildren: () => import('./pages/help/help.module').then( m => m.HelpPageModule)
+  },
+
 ];
 @NgModule({
 	imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ],

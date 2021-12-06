@@ -6,7 +6,7 @@
 </style>
 <ion-header>
   <ion-toolbar>
-    <ng-container *ngIf="isLoggedOut$ | async">
+    <ng-container *ngIf="authStoreService.isLoggedOut$ | async">
       <ion-buttons slot="secondary">
         <ion-button expand="full" fill="clear" [routerLink]="['/auth/login']">
           Sign In
@@ -16,17 +16,17 @@
         </ion-button>
       </ion-buttons>
     </ng-container>
-    <ng-container *ngIf="isLoggedIn$ | async">
+    <ng-container *ngIf="authStoreService.isLoggedIn$ | async">
       <ion-buttons slot="secondary">
-        <ion-button (click)="profile()">
+        <!-- <ion-button (click)="profile()">
           <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-        </ion-button>
+        </ion-button> -->
         <ion-button>
           <ion-icon slot="icon-only" name="search"></ion-icon>
         </ion-button>
-        <ion-button (click)="logout()">
+        <!-- <ion-button (click)="logout()">
           <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-        </ion-button>
+        </ion-button> -->
       </ion-buttons>
       <ion-buttons slot="primary">
         <ion-button color="secondary" (click)="presentPopover($event)">
@@ -34,12 +34,9 @@
         </ion-button>
       </ion-buttons>
     </ng-container>
-    <ion-button fill="clear" color="dark" routerLink="{{(isLoggedIn$ | async) == true ? '/dashboard' : '/'}}">
-      <img class="title-image" src="https://imgs.minibook.io/common/minibook-symbol-white.png" color="primary"
-        width="36" height="36" />
-      <ion-title style="padding-left: 5px;" class="ion-no-padding">
-        Minibook
-      </ion-title>
-    </ion-button>
+
+    <app-logo-button *ngIf="authStoreService.isLoggedOut$ | async" routerLink="/"></app-logo-button>
+    <app-logo-button *ngIf="authStoreService.isLoggedIn$ | async" routerLink="/dashboard"></app-logo-button>
+
   </ion-toolbar>
 </ion-header>

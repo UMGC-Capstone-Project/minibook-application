@@ -1,3 +1,4 @@
+import { UserLoginRequest } from './../model/User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,12 +8,15 @@ import { tap } from 'rxjs/operators';
 import { AppState } from 'src/app/reducers';
 import { AuthActions } from '../action-types';
 import { User } from '../model/User';
-import { AuthService } from './../../../services/auth.service';
+import jwt_decode from "jwt-decode";
+import { AuthService } from '../services/auth.service';
+import { AuthStoreService } from '../services/auth-store.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.page.html',
-	styleUrls: [ './login.page.scss' ]
+	styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
 	isSubmitted: boolean = false;
@@ -22,7 +26,9 @@ export class LoginPage implements OnInit {
 		private store: Store<AppState>,
 		public formBuilder: FormBuilder,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private authStore: AuthStoreService,
+		public platform: Platform
 	) {
 		this.form = this.formBuilder.group({
 			email: [
@@ -33,13 +39,19 @@ export class LoginPage implements OnInit {
 					Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')
 				]
 			],
-			password: [ '123456789', [ Validators.minLength(6), Validators.required ] ]
+			password: ['123456789', [Validators.minLength(6), Validators.required]]
 		});
 	}
 
-	ngOnInit() {}
+	ngOnInit() { }
 	get errorControl() {
 		return this.form.controls;
+	}
+	getWidth() {
+		if (this.platform.is('mobile')) {
+			return '100%'
+		}
+		return ''
 	}
 
 	onSubmit() {
@@ -49,24 +61,33 @@ export class LoginPage implements OnInit {
 			return false;
 		}
 
-		const { email, password } = this.form.value as User;
-		this.authService
-			.login(email, password)
-			.pipe(
-				tap((user) => {
-					console.log(user);
-					this.store.dispatch(
-						AuthActions.login({
-							user: {
-								email: '',
-								password: ''
-							}
-						})
-					);
-					this.router.navigateByUrl('/dashboard');
-				})
-			)
-			.subscribe(noop, () => alert('Login Failed'));
+		const data = this.form.value as UserLoginRequest;
+		this.authStore
+			.login(data.email, data.password)
+			.subscribe(() => {
+				this.router.navigateByUrl('/dashboard')
+			}, err => {
+				alert("login failed")
+			})
+		// .pipe(
+		// 	tap((user) => {
+		// 		console.log(user);
+		// 		const token = user["access_token"]
+		// 		console.log(token)
+		// 		const decode = jwt_decode(token)
+		// 		console.log(decode)
+		// 		// this.store.dispatch(
+		// 		// 	// AuthActions.login({
+		// 		// 	// 	user: {
+		// 		// 	// 		email: '',
+		// 		// 	// 		password: ''
+		// 		// 	// 	}
+		// 		// 	// })
+		// 		// );
+		// 		this.router.navigateByUrl('/dashboard');
+		// 	})
+		// )
+		// .subscribe(noop, () => console.log('login failed'));
 		// this.store.dispatch(loginStart({email: '', password: ''}))
 	}
 }

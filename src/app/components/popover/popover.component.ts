@@ -1,4 +1,6 @@
+import { AuthStoreService } from './../../pages/auth/services/auth-store.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-popover',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopoverComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authStoreService: AuthStoreService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  logout() {
+    this.authStoreService.logout()
+    this.router.navigateByUrl('/')
+  }
 }

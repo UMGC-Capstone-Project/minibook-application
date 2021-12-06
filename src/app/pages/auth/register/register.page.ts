@@ -1,12 +1,13 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, HttpOptions, HttpResponse } from '@capacitor-community/http';
 import { Platform } from '@ionic/angular';
 import { from, Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
-const API_URL: string = 'https://api.minibook.io';
+// const API_URL: string = 'https://api.minibook.io';
+const API_URL: string = 'http://localhost:3000';
 
 @Component({
 	selector: 'app-register',
@@ -55,7 +56,7 @@ export class RegisterPage implements OnInit {
 		const { passwordConfirm, termsOfService, ...results } = this.form.value;
 		//... move all this logic out to an HTTPServiceModule
 		const postResults = this.postRequest(
-			'https://api.minibook.io/v1/auth/register',
+			`${API_URL}/v1/auth/register`,
 			results
 		).subscribe((results) => {
 			const _results: UserDto = results.data;

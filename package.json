@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
+  "engines": {
+    "node": "16.13.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~12.2.13",
     "@angular/router": "~12.2.13",
     "@capacitor-community/http": "^1.4.1",
+    "@capacitor/android": "3.3.2",
     "@capacitor/app": "1.0.6",
     "@capacitor/browser": "1.0.6",
     "@capacitor/camera": "^1.2.1",
@@ -31,10 +35,12 @@
     "@capacitor/storage": "^1.2.3",
     "@ionic/angular": "^5.5.2",
     "@ionic/pwa-elements": "^3.0.2",
+    "@ionic/storage-angular": "^3.0.6",
     "@ngrx/effects": "^13.0.1",
     "@ngrx/entity": "^13.0.1",
     "@ngrx/store": "^13.0.1",
     "@ngrx/store-devtools": "^13.0.1",
+    "jwt-decode": "^3.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

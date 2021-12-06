@@ -1,3 +1,4 @@
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { authReducer } from './pages/auth/reducers/module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ import { metaReducers } from './reducers/index';
 	declarations: [ AppComponent ],
 	entryComponents: [],
 	imports: [
+		IonicStorageModule.forRoot(),
 		HttpClientModule,
 		BrowserModule,
 		IonicModule.forRoot(),
