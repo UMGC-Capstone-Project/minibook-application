@@ -26,11 +26,35 @@ export class ApiService {
     const formData = new FormData();
     formData.append('file', file, `myimage.${ext}`);
     formData.append('name', file.name);
- 
+
     return this.httpClient.post<any>(`${this.url}/image`, formData);
   }
 
-  deleteImage() {
+  deleteImage(id: string) {
     return this.httpClient.delete(`${this.url}/image/${id}`);
+  }
+
+  getFeed() {
+    const token = this.getToken()
+    return this.httpClient.get<any[]>(`${this.url}/v1/feed`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  }
+
+  getToken(): string {
+    return localStorage.getItem('auth_token').replace(/["]/g, '');
+  }
+
+  createPost(body: string) {
+    const token = this.getToken()
+    return this.httpClient.post(`${this.url}/v1/feed`, {
+      body: body
+    }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
   }
 }

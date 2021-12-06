@@ -19,9 +19,12 @@
     <ion-card-subtitle>Developer</ion-card-subtitle>
   </ion-card-header>
 
-  <div class="item-divider"></div>
-
   <ion-card-content>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="addPhotoToGallery()">
+        <ion-icon name="camera">CAMERA!</ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <!-- <div>
       <span>Who viewed your profile</span>
       <ion-text color="primary">467</ion-text>

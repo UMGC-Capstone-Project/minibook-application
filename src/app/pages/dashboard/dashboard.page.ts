@@ -1,3 +1,5 @@
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiService } from './../../services/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 
@@ -13,9 +15,11 @@ export class DashboardPage implements OnInit {
 	// itemListData = [];
 	// page_number = 1;
 	// page_limit = 8;
+  subject = new BehaviorSubject<any>(null);
+  feed$: Observable<any> = this.subject;
 
 
-	constructor() {
+	constructor(public apiService:ApiService) {
 
 		// for (let index = 0; index < 35; index++) {
 		// 	const element = this.itemListData[index];
@@ -29,9 +33,13 @@ export class DashboardPage implements OnInit {
 		// 	   }
 		// 	   this.itemListData.push(newItem)
 		// }
-
+    this.feed$ = this.getFeed()
 
 	}
+
+  getFeed() {
+    return this.apiService.getFeed();
+  }
 	ngOnInit(): void {
 	}
     users =

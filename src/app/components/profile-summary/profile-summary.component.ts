@@ -1,5 +1,6 @@
 import { AuthStoreService } from './../../pages/auth/services/auth-store.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-profile-summary',
@@ -8,12 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileSummaryComponent implements OnInit {
 
-  @Input() showExtra: boolean = false
-
-  constructor(public authStoreService: AuthStoreService) { }
+  constructor(public authStoreService: AuthStoreService, public photoService: PhotoService) { }
 
   ngOnInit() {}
 
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery();
+  }
+  
   onFileSelect(ev: any) {
     console.log(ev);
   }

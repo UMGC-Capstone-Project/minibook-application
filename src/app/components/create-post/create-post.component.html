@@ -4,11 +4,10 @@
       <ion-avatar slot="start">
         <img src="{{(authStoreService.user$ |async).avatar}}">
       </ion-avatar>
-      <ion-input autocorrect="on" class="custom-class" autofocus="on" clearInput="true" clearOnEdit="true"
-        placeholder="What is the meaning of life?"></ion-input>
-      <ion-button fill="outline" shape="round" size="small" expand="full">Post</ion-button>
+        <ion-input (ionChange)="onChange($event)" change autocorrect="on" class="custom-class" autofocus="on" clearInput="true" clearOnEdit="true"
+          placeholder="What is the meaning of life?" value="{{inputChange$ | async}}"></ion-input>
+        <ion-button (click)="onClick()" type="submit" fill="outline" shape="round" size="small" expand="full">Post</ion-button>
     </ion-item>
-    {{message}}
   </ion-header>
   <ion-card-content class="ion-text-center">
     <ion-button color="small" fill="clear" disabled="true">
