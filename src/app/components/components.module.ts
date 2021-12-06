@@ -10,15 +10,17 @@ import { AnimBirdComponent } from './anim-bird/anim-bird.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { ProfileSummaryComponent } from './profile-summary/profile-summary.component';
+import { ConnectionsCardComponent } from './connections-card/connections-card.component';
 
-const components = [ LogoButtonComponent, CreatePostComponent, DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent ];
+const components = [ConnectionsCardComponent, ProfileSummaryComponent, LogoButtonComponent, CreatePostComponent, DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent];
 
 @NgModule({
-	imports: [ 
+	imports: [
 		IonicModule,
-		RouterModule, IonicModule.forRoot(), CommonModule ],
+		RouterModule, IonicModule.forRoot(), CommonModule],
 	declarations: components,
 	exports: components,
-	schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

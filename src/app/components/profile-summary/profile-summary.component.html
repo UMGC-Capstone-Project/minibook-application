@@ -1,0 +1,35 @@
+<ion-card>
+  <div class="backdrop">
+    <div class="background-one"></div>
+    <div class="half-ellipse"></div>
+    <div class="background-two"></div>
+    <div class="background-three"></div>
+  </div>
+  <ion-card-header class="ion-text-center">
+
+    <input #fileUpload (change)="onFileSelect($event)" style="display: none" type="file" />
+
+    <ion-avatar (click)="fileUpload.click()" style="cursor: pointer" class="ion-margin-auto">
+      <ion-img *ngIf="(authStoreService.user$ | async).avatar" [src]="(authStoreService.user$ | async).avatar">
+      </ion-img>
+    </ion-avatar>
+
+    <ion-card-title class="ion-margin-top"> {{ (authStoreService.user$ | async).firstname }} {{ (authStoreService.user$
+      | async).lastname }} </ion-card-title>
+    <ion-card-subtitle>Developer</ion-card-subtitle>
+  </ion-card-header>
+
+  <div class="item-divider"></div>
+
+  <ion-card-content>
+    <!-- <div>
+      <span>Who viewed your profile</span>
+      <ion-text color="primary">467</ion-text>
+    </div> -->
+    <div class="connections">
+      <span>Connections</span>
+      <ion-text color="primary">678</ion-text>
+    </div>
+    <ion-card-subtitle style="cursor: pointer" routerLink="/connections" class="ion-text-center" color="dark">Manage your Friends</ion-card-subtitle>
+  </ion-card-content>
+</ion-card>

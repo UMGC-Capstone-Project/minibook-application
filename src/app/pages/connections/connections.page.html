@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>connections</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="display: flex; justify-content: left;" *ngFor="let connection of connections">
+        <app-connections-card [connection]=connection></app-connections-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

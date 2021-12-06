@@ -7,7 +7,8 @@ import { map, shareReplay, tap } from 'rxjs/operators';
 
 const AUTH_TOKEN: string = 'auth_token';
 const AUTH_USER: string = 'auth_user';
-const API_URL: string = 'https://api.minibook.io';
+// const API_URL: string = 'https://api.minibook.io';
+const API_URL: string = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthStoreService {
   isLoggedIn$: Observable<boolean>
   isLoggedOut$: Observable<boolean>
 
-  constructor(private readonly httpClient: HttpClient,) {
+  constructor(private readonly httpClient: HttpClient) {
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user))
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn))
 
