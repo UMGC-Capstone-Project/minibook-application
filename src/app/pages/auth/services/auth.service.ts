@@ -8,8 +8,8 @@ import { User } from '../model/User';
 import { StorageService } from './storage.service';
 import { map, tap } from 'rxjs/operators';
 
-const API_URL: string = 'http://localhost:3000'
-
+// const API_URL: string = 'http://localhost:3000'
+const API_URL: string = 'https://api.minibook.io';
 @Injectable({
 	providedIn: 'root'
 })

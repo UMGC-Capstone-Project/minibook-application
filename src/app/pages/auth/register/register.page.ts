@@ -6,8 +6,8 @@ import { Platform } from '@ionic/angular';
 import { from, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-// const API_URL: string = 'https://api.minibook.io';
-const API_URL: string = 'http://localhost:3000';
+const API_URL: string = 'https://api.minibook.io';
+// const API_URL: string = 'http://localhost:3000';
 
 @Component({
 	selector: 'app-register',
