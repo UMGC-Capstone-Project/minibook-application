@@ -1,4 +1,12 @@
 Windows 
+- Powershell
+```
+$Env:NODE_OPTIONS=--openssl-legacy-provider
+```
+- CMD
+```
+set NODE_OPTIONS=--openssl-legacy-provider
+```
 Linux
 ```
 export NODE_OPTIONS=--openssl-legacy-provider
