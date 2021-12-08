@@ -9,7 +9,7 @@
 
     <input #fileUpload (change)="onFileSelect($event)" style="display: none" type="file" />
 
-    <ion-avatar (click)="fileUpload.click()" style="cursor: pointer" class="ion-margin-auto">
+    <ion-avatar (click)="addPhotoToGallery()" style="cursor: pointer" class="ion-margin-auto">
       <ion-img *ngIf="(authStoreService.user$ | async).avatar" [src]="(authStoreService.user$ | async).avatar">
       </ion-img>
     </ion-avatar>
@@ -20,11 +20,11 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed">
       <ion-fab-button (click)="addPhotoToGallery()">
         <ion-icon name="camera">CAMERA!</ion-icon>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab> -->
     <!-- <div>
       <span>Who viewed your profile</span>
       <ion-text color="primary">467</ion-text>

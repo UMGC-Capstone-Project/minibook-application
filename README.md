@@ -29,3 +29,6 @@ SET CAPACITOR_ANDROID_STUDIO_PATH=C:\Users\coldf\AppData\Local\JetBrains\Toolbox
       webSettings.setForceDark(WebSettings.FORCE_DARK_OFF);
     }
   }
+
+  ionic serve --configuration=development
+  ionic serve --configuration=production

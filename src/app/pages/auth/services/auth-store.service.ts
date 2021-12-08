@@ -4,11 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from '../model/User';
 import { map, shareReplay, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 const AUTH_TOKEN: string = 'auth_token';
 const AUTH_USER: string = 'auth_user';
-// const API_URL: string = 'https://api.minibook.io';
-const API_URL: string = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +37,7 @@ export class AuthStoreService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.httpClient.post<User>(`${API_URL}/v1/auth/login`, { email: email, password: password })
+    return this.httpClient.post<User>(`${environment.apiUrl}/auth/login`, { email: email, password: password })
       .pipe(
         // has a token
         tap(payload => {

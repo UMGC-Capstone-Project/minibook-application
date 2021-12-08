@@ -53,10 +53,12 @@ const routes: Routes = [
 		path: 'status',
 		loadChildren: () => import('./pages/status/status.module').then((m) => m.StatusPageModule)
 	},
+	{
+		path: 'debug',
+		loadChildren: () => import('./pages/debug/debug.module').then(m => m.DebugPageModule)
+	},
 	// Wildcard route
 	{ path: '**', component: PageNotFoundComponent },
-
-
 ];
 @NgModule({
 	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

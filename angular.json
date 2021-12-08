@@ -65,11 +65,11 @@
                 }
               ]
             },
-            "staging": {
+            "development": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
+                  "with": "src/environments/environment.dev.ts"
                 }
               ]
             },
@@ -83,12 +83,13 @@
           "options": {
             "browserTarget": "app:build"
           },
+          
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
             },
-            "staging": {
-              "browserTarget": "app:build:staging"
+            "development": {
+              "browserTarget": "app:build:development"
             },
             "ci": {
               "progress": false

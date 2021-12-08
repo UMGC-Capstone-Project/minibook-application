@@ -1,4 +1,8 @@
-export const environment = {
+import { Environment } from "./environment.interface";
+
+export const environment: Environment = {
   production: true,
-  apiUrl: 'https://minibook.io'
+  baseUrl: 'https://minibook.io',
+  apiUrl: 'https://api.minibook.io/v1',
+  imgUrl: "https://imgs.minibook.io",
 };

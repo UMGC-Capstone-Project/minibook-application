@@ -5,6 +5,95 @@
 </ion-header>
 
 <ion-content>
-  <app-profile-summary></app-profile-summary> 
+  <ion-grid>
+    <ion-row>
+      <ion-col style="height: 256px; margin-bottom: 30px; max-width: 300px;">
+        <ion-card style="text-align: -webkit-center;">
+          <app-profile-summary></app-profile-summary>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card size="true" style="height: 256px; text-align: -webkit-center;">
+          <h3>Information</h3>
+          <ion-row>
+            <ion-col>
+              <ion-row>
+                <ion-col>
+                  <div>First Name</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+                <ion-col>
+                  <div>Last Name</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div>Gender</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+                <ion-col>
+                  <div>Contact Number</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div>Current Location</div>
+                </ion-col>
+                <ion-col>
+                  <div>Location</div>
+                </ion-col>
+                <ion-col>
+                  <div>Country</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div>Email Address</div>
+                </ion-col>
+                <ion-col>
+                  <div>1 of 2</div>
+                </ion-col>
+                <ion-col>
+                  <div>Birthday</div>
+                </ion-col>
+                <ion-col>
+                  <div>2 of 2</div>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <h2 style="text-align: -webkit-center;">Photos</h2>
+          <ion-row>
+            <ion-col sizeXs="12" sizeSm="6" size="4" sizeMd="4" sizeLg="3" sizeXl="2"  style="display: flex; justify-content: center;" *ngFor="let connection of photos">
+              <ion-card color="primary">
+                <img src="https://github.com/ionic-team/ionic-docs/blob/main/static/demos/api/card/madison.jpg?raw=true" />
+                <ion-card-header>
+                  <ion-card-subtitle>Destination</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-

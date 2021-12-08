@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>connections</ion-title>
+    <ion-title>Friends</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col style="display: flex; justify-content: left;" *ngFor="let connection of connections">
-        <app-connections-card [connection]=connection></app-connections-card>
-      </ion-col>
-    </ion-row>
+    <ion-card>
+      <h2 style="text-align: center;">Friends</h2>
+      <ion-row>
+        <!-- <ion-col sizeXs="12" sizeSm="6" size="4" sizeMd="4" sizeLg="3" sizeXl="2"  style="display: flex; justify-content: center;" *ngFor="let connection of connections"></ion-col> -->
+        <ion-col sizeXs="12" sizeSm="6" size="4" sizeMd="4" sizeLg="3" sizeXl="2"
+          style="display: flex; justify-content: center;" *ngFor="let connection of connections">
+          <app-connections-card [connection]=connection></app-connections-card>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </ion-grid>
 </ion-content>
