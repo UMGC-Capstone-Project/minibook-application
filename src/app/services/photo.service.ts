@@ -33,7 +33,7 @@ export class PhotoService {
 		formData.append('file', blob);
 		const token = localStorage.getItem('auth_token').replace(/["]/g, '');
 		console.log(token);
-		this.httpClient.post(`${this.apiUrl}/users/avatar`, formData, {
+		this.httpClient.post(`${environment.apiUrl}/users/avatar`, formData, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}

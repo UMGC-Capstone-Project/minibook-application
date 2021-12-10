@@ -13,7 +13,7 @@ export class UserService {
     constructor(private readonly httpClient: HttpClient) { }
 
     async getMyProfile() {
-        return this.httpClient.get<any>(`${this.apiUrl}/users/me`);
+        return this.httpClient.get<any>(`${environment.apiUrl}/users/me`);
     }
 
     getUserProfile() {

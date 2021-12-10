@@ -39,8 +39,8 @@ export class AuthStoreService {
   }
 
   login(email: string, password: string): Observable<User> {
-    console.log(email)
-    return this.httpClient.post<User>(`${this.apiUrl}/auth/login`, { email, password })
+    console.log(email);
+    return this.httpClient.post<User>(`${environment.apiUrl}/auth/login`, { email, password })
       .pipe(
         // has a token
         tap(payload => {
@@ -59,7 +59,7 @@ export class AuthStoreService {
   }
 
   register(results: any) {
-    return this.httpClient.post<any>(`${this.apiUrl}/auth/register`, results);
+    return this.httpClient.post<any>(`${environment.apiUrl}/auth/register`, results);
   }
 
   logout() {

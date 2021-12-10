@@ -9,19 +9,18 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = environment.apiUrl;
   private subject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor(private readonly httpClient: HttpClient) { }
 
   getImages() {
-    return this.httpClient.get<any[]>(`${this.apiUrl}/image`);
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/image`);
   }
 
   uploadImage(data, name, ext) {
     const formData = new FormData();
     formData.append('file', data, `myimage.${ext}`);
     formData.append('name', name);
-    return this.httpClient.post<any>(`${this.apiUrl}/image`, formData);
+    return this.httpClient.post<any>(`${environment.apiUrl}/image`, formData);
   }
 
   uploadImageFile(file: File) {
@@ -30,16 +29,16 @@ export class ApiService {
     formData.append('file', file, `myimage.${ext}`);
     formData.append('name', file.name);
 
-    return this.httpClient.post<any>(`${this.apiUrl}/image`, formData);
+    return this.httpClient.post<any>(`${environment.apiUrl}/image`, formData);
   }
 
   deleteImage(id: string) {
-    return this.httpClient.delete(`${this.apiUrl}/image/${id}`);
+    return this.httpClient.delete(`${environment.apiUrl}/image/${id}`);
   }
 
   getFeed() {
     const token = this.getToken();
-    return this.httpClient.get<any[]>(`${this.apiUrl}/feed`, {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/feed`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -52,7 +51,7 @@ export class ApiService {
 
   createPost(body: string) {
     const token = this.getToken();
-    return this.httpClient.post(`${this.apiUrl}/feed`, {
+    return this.httpClient.post(`${environment.apiUrl}/feed`, {
       body
     }, {
       headers: {
@@ -63,7 +62,7 @@ export class ApiService {
 
   getMyProfile() {
     const token = this.getToken();
-    return this.httpClient.get(`${this.apiUrl}/users/me`, {
+    return this.httpClient.get(`${environment.apiUrl}/users/me`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

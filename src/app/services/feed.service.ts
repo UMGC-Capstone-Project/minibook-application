@@ -9,9 +9,8 @@ import { Injectable } from '@angular/core';
 export class FeedService {
 
   constructor(private httpClient: HttpClient) { }
-  apiUrl = environment.apiUrl;
   loadAllFeeds(): Observable<Posts[]> {
-    return this.httpClient.get<Posts[]>(`${this.apiUrl}/feed`);
+    return this.httpClient.get<Posts[]>(`${environment.apiUrl}/feed`);
   }
 
 
