@@ -2,48 +2,68 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { AuthStoreService } from '../auth/services/auth-store.service';
 
 @Component({
-	selector: 'app-dashboard',
-	templateUrl: './dashboard.page.html',
-	styleUrls: [ './dashboard.page.scss' ]
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.page.html',
+  styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
-	@ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-	// url: string;
-	// itemListData = [];
-	// page_number = 1;
-	// page_limit = 8;
+  // url: string;
+  // itemListData = [];
+  // page_number = 1;
+  // page_limit = 8;
+  inputChange$ = new BehaviorSubject('');
   subject = new BehaviorSubject<any>(null);
   feed$: Observable<any> = this.subject;
 
 
-	constructor(public apiService: ApiService) {
+  constructor(public apiService: ApiService, public authStoreService: AuthStoreService) {
 
-		// for (let index = 0; index < 35; index++) {
-		// 	const element = this.itemListData[index];
-		// 	const newItem = {
-		// 		"id":index,
-		// 		"name":"Lilla Nitzsche",
-		// 		"jobtype":"Human Intranet Liaison",
-		// 		"email":"Edwardo_Homenick@gmail.com",
-		// 		"address":"11360 Bahringer Squares",
-		// 		"imageUrl":"https://s3.amazonaws.com/uifaces/faces/twitter/aleclarsoniv/128.jpg"
-		// 	   }
-		// 	   this.itemListData.push(newItem)
-		// }
+    // for (let index = 0; index < 35; index++) {
+    // 	const element = this.itemListData[index];
+    // 	const newItem = {
+    // 		"id":index,
+    // 		"name":"Lilla Nitzsche",
+    // 		"jobtype":"Human Intranet Liaison",
+    // 		"email":"Edwardo_Homenick@gmail.com",
+    // 		"address":"11360 Bahringer Squares",
+    // 		"imageUrl":"https://s3.amazonaws.com/uifaces/faces/twitter/aleclarsoniv/128.jpg"
+    // 	   }
+    // 	   this.itemListData.push(newItem)
+    // }
     this.feed$ = this.getFeed();
+    this.feed$.subscribe(data => {
+      console.log(data);
+    });
+  }
 
-	}
+
+  async onChange(ev: any) {
+    this.inputChange$.next(ev.detail.value);
+  }
+
+  async onClick() {
+    console.log(this.inputChange$.value);
+    if (this.inputChange$.value.length < 1) { return; }
+
+    this.apiService.createPost(this.inputChange$.value).subscribe(async results => {
+      console.log(results);
+      this.inputChange$.next('');
+      this.feed$ = this.getFeed();
+    });
+  }
 
   getFeed() {
     return this.apiService.getFeed();
   }
-	ngOnInit(): void {
-	}
-    // eslint-disable-next-line @typescript-eslint/member-ordering
-    users =
+  ngOnInit(): void {
+  }
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  users =
     [{
       name: 'Aline Grover',
       created: 'November 28, 2012'
@@ -166,22 +186,22 @@ export class DashboardPage implements OnInit {
       created: 'April 27, 2016'
     }];
 
-	loadData(event) {
-		console.log('start');
-		setTimeout(() => {
-		  console.log('Done');
-		  event.target.complete();
+  loadData(event) {
+    console.log('start');
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
 
-		  // App logic to determine if all data is loaded
-		  // and disable the infinite scroll
-		//   if (this.users.length == 1000) {
-		// 	event.target.disabled = true;
-		//   }
-		}, 500);
-	  }
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      //   if (this.users.length == 1000) {
+      // 	event.target.disabled = true;
+      //   }
+    }, 500);
+  }
 
-	  toggleInfiniteScroll() {
-		console.log('tap: ', this.infiniteScroll.disabled);
-		this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-	  }
+  toggleInfiniteScroll() {
+    console.log('tap: ', this.infiniteScroll.disabled);
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
 }

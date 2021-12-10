@@ -6,15 +6,47 @@
 
 <ion-content>
   <div class="ion-padding">
-    <app-create-post></app-create-post>
+    <!-- <app-create-post></app-create-post> -->
+    <ion-card>
+      <ion-header>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="{{(authStoreService.user$ |async).avatar}}">
+          </ion-avatar>
+          <ion-input (ionChange)="onChange($event)" change autocorrect="on" class="custom-class" autofocus="on"
+            clearInput="true" clearOnEdit="true" placeholder="What is the meaning of life?"
+            value="{{inputChange$ | async}}"></ion-input>
+          <ion-button (click)="onClick()" type="submit" fill="outline" shape="round" size="small" expand="full">Post
+          </ion-button>
+        </ion-item>
+      </ion-header>
+      <ion-card-content class="ion-text-center">
+        <ion-button color="small" fill="clear" disabled="true">
+          <ion-icon color="secondary" style="padding-right: 3px;" name="image-outline"></ion-icon>
+          <ion-text>Photo</ion-text>
+        </ion-button>
+        <ion-button color="small" fill="clear" disabled="true">
+          <ion-icon color="secondary" style="padding-right: 3px;" name="image-outline"></ion-icon>
+          <ion-text>Video</ion-text>
+        </ion-button>
+        <!-- <ion-button color="small" fill="clear" disabled="true">
+          <ion-icon color="secondary" style="padding-right: 3px;" name="image-outline"></ion-icon>
+          <ion-text>Event</ion-text>
+        </ion-button> -->
+        <!-- <ion-button color="small" fill="clear" disabled="true">
+          <ion-icon color="secondary" style="padding-right: 3px;" name="image-outline"></ion-icon>
+          <ion-text>Message</ion-text>
+        </ion-button> -->
+      </ion-card-content>
+    </ion-card>
     <div class="ion-padding">
-      <ion-list *ngFor="let item of this.feed$ | async" >
+      <ion-list *ngFor="let item of this.feed$ | async">
         <ion-item>
           <ion-avatar slot="end">
             <img src="https://imgs.minibook.io/common/dave.jpg">
           </ion-avatar>
           <ion-label>
-            <h3>{{item.id}}</h3>
+            <h3>{{item.createdAt}}</h3>
             <p>{{item.body}}</p>
             <p>{{item.isPublished}}</p>
           </ion-label>
