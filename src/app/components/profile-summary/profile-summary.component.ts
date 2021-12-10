@@ -11,8 +11,8 @@ import { PhotoService } from 'src/app/services/photo.service';
 })
 export class ProfileSummaryComponent implements OnInit {
 
-  @Input() isPublished: boolean;
-  @Input() countConnections = 0;
+  @Input() isPublished: string;
+  @Input() countConnections: string;
 
   constructor(public authStoreService: AuthStoreService, public photoService: PhotoService) { }
 
