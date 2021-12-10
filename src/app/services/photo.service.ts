@@ -16,7 +16,7 @@ import { AuthStoreService } from '../pages/auth/services/auth-store.service';
 })
 export class PhotoService {
 	public photos: IPhoto[] = [];
-
+	apiUrl = environment.apiUrl;
 	constructor(private apiService: ApiService, private readonly httpClient: HttpClient, private authStorageService: AuthStoreService) { }
 
 	public async addNewToGallery() {
@@ -33,7 +33,7 @@ export class PhotoService {
 		formData.append('file', blob);
 		const token = localStorage.getItem('auth_token').replace(/["]/g, '');
 		console.log(token);
-		this.httpClient.post(`${environment.apiUrl}/users/avatar`, formData, {
+		this.httpClient.post(`${this.apiUrl}/users/avatar`, formData, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}

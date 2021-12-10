@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
     user$ = new BehaviorSubject<any>(null);
-
+    apiUrl = environment.apiUrl;
     constructor(private readonly httpClient: HttpClient) { }
 
     async getMyProfile() {
-        return this.httpClient.get<any>(`${environment.apiUrl}/users/me`);
+        return this.httpClient.get<any>(`${this.apiUrl}/users/me`);
     }
 
     getUserProfile() {

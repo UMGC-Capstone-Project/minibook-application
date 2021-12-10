@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 	authState = new BehaviorSubject(false);
-
+	apiUrl = environment.apiUrl;
 	isAutenticated = false;
 
 	constructor(
@@ -24,7 +24,7 @@ export class AuthService {
 
 	login(data: UserLoginRequest): Observable<UserLoginResponse> {
 		const {email, password} = data;
-		return this.httpClient.post<UserLoginResponse>(`${environment.apiUrl}/auth/login`, { email, password }).pipe(
+		return this.httpClient.post<UserLoginResponse>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
 			tap(async user=> {
 				this.storageService.set<UserLoginResponse>('USER_TOKEN', user);
 				// const response = await this.storageService.get<UserLoginResponse>('USER_TOKEN');
