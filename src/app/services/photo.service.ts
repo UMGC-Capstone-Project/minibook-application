@@ -1,3 +1,6 @@
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/naming-convention */
+import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { Camera, CameraPhoto, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
@@ -5,7 +8,7 @@ import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@capacitor/storage';
 import { IPhoto } from '../common/interfaces/photo.interface';
 import { HttpClient } from '@angular/common/http';
-import {decode} from "base64-arraybuffer";
+import {decode} from 'base64-arraybuffer';
 import { AuthStoreService } from '../pages/auth/services/auth-store.service';
 // TODO: clean up all this later!!! maybe?!
 @Injectable({
@@ -23,19 +26,20 @@ export class PhotoService {
 			source: CameraSource.Camera,
 			quality: 100
 		});
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const response = await fetch(capturedPhoto.webPath!);
 		const blob = await response.blob();
 		const formData = new FormData();
-		formData.append('file', blob)
+		formData.append('file', blob);
 		const token = localStorage.getItem('auth_token').replace(/["]/g, '');
-		console.log(token)
-		this.httpClient.post('http://localhost:3000/users/avatar', formData, {
+		console.log(token);
+		this.httpClient.post(`${environment.apiUrl}/users/avatar`, formData, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
 		}).subscribe(result=> {
-			console.log(result)
-		})
+			console.log(result);
+		});
 
 		this.photos.unshift({
 			filepath: 'soon...',
@@ -45,14 +49,16 @@ export class PhotoService {
 
 	private async readAsBase64(cameraPhoto: Photo) {
 		// Fetch the photo, read as a blob, then convert to base64 format
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const response = await fetch(cameraPhoto.webPath!);
 		const blob = await response.blob();
 
 		return await this.convertBlobToBase64(blob) as string;
 	}
 
+	// eslint-disable-next-line @typescript-eslint/member-ordering
 	convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-		const reader = new FileReader;
+		const reader = new FileReader();
 		reader.onerror = reject;
 		reader.onload = () => {
 			resolve(reader.result);
@@ -60,12 +66,13 @@ export class PhotoService {
 		reader.readAsDataURL(blob);
 	});
 
+	// eslint-disable-next-line @typescript-eslint/member-ordering
 	dataURLtoFile(dataurl, filename) {
-        let arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
+        const arr = dataurl.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
         while (n--) {
             u8arr[n] = bstr.charCodeAt(n);
         }
