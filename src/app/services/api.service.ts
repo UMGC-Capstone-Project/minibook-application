@@ -13,14 +13,14 @@ export class ApiService {
   constructor(private readonly httpClient: HttpClient) { }
 
   getImages() {
-    return this.httpClient.get<any[]>(`${environment.apiUrl}/v1/image`);
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/image`);
   }
 
   uploadImage(data, name, ext) {
     const formData = new FormData();
     formData.append('file', data, `myimage.${ext}`);
     formData.append('name', name);
-    return this.httpClient.post<any>(`${environment.apiUrl}/v1/image`, formData);
+    return this.httpClient.post<any>(`${environment.apiUrl}/image`, formData);
   }
 
   uploadImageFile(file: File) {
@@ -38,7 +38,7 @@ export class ApiService {
 
   getFeed() {
     const token = this.getToken();
-    return this.httpClient.get<any[]>(`${environment.apiUrl}/v1/feed`, {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/feed`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -51,7 +51,7 @@ export class ApiService {
 
   createPost(body: string) {
     const token = this.getToken();
-    return this.httpClient.post(`${environment.apiUrl}/v1/feed`, {
+    return this.httpClient.post(`${environment.apiUrl}/feed`, {
       body
     }, {
       headers: {
@@ -62,7 +62,7 @@ export class ApiService {
 
   getMyProfile() {
     const token = this.getToken();
-    return this.httpClient.get(`${environment.apiUrl}/v1/users/me`, {
+    return this.httpClient.get(`${environment.apiUrl}/users/me`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
