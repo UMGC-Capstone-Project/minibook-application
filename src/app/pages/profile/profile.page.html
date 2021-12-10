@@ -9,7 +9,7 @@
     <ion-row>
       <ion-col style="height: 256px; margin-bottom: 30px; max-width: 300px;">
         <ion-card style="text-align: -webkit-center;">
-          <app-profile-summary></app-profile-summary>
+          <app-profile-summary isPublished="{{(user$ | async).isPublished}}" countConnections="{{5}}"></app-profile-summary>
         </ion-card>
       </ion-col>
       <ion-col>
@@ -22,13 +22,13 @@
                   <div>First Name</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).firstname}}</div>
                 </ion-col>
                 <ion-col>
                   <div>Last Name</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).lastname}}</div>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -36,13 +36,13 @@
                   <div>Gender</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).gender}}</div>
                 </ion-col>
                 <ion-col>
                   <div>Contact Number</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).phonenumber}}</div>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -50,13 +50,13 @@
                   <div>Current Location</div>
                 </ion-col>
                 <ion-col>
-                  <div>Location</div>
+                  <div>{{(user$ | async).location}}</div>
                 </ion-col>
                 <ion-col>
                   <div>Country</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).country}}</div>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -64,13 +64,13 @@
                   <div>Email Address</div>
                 </ion-col>
                 <ion-col>
-                  <div>1 of 2</div>
+                  <div>{{(user$ | async).email}}</div>
                 </ion-col>
                 <ion-col>
                   <div>Birthday</div>
                 </ion-col>
                 <ion-col>
-                  <div>2 of 2</div>
+                  <div>{{(user$ | async).birthday}}</div>
                 </ion-col>
               </ion-row>
             </ion-col>

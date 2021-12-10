@@ -1,14 +1,11 @@
+import { IFormMessageStatus } from './../../../common/interfaces/form-message-status.interface';
 import { UserLoginRequest } from './../model/User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { noop } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, noop } from 'rxjs';
 import { AppState } from 'src/app/reducers';
-import { AuthActions } from '../action-types';
-import { User } from '../model/User';
-import jwt_decode from "jwt-decode";
 import { AuthService } from '../services/auth.service';
 import { AuthStoreService } from '../services/auth-store.service';
 import { Platform } from '@ionic/angular';
@@ -19,8 +16,13 @@ import { Platform } from '@ionic/angular';
 	styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
-	isSubmitted: boolean = false;
+	isSubmitted = false;
 	form: FormGroup;
+
+	formMessageStatus$ = new BehaviorSubject<IFormMessageStatus>({
+		message: 'Submit',
+		error: false,
+	});
 
 	constructor(
 		private store: Store<AppState>,
@@ -47,11 +49,12 @@ export class LoginPage implements OnInit {
 	get errorControl() {
 		return this.form.controls;
 	}
+
 	getWidth() {
 		if (this.platform.is('mobile')) {
-			return '100%'
+			return '100%';
 		}
-		return ''
+		return '';
 	}
 
 	onSubmit() {
@@ -65,10 +68,32 @@ export class LoginPage implements OnInit {
 		this.authStore
 			.login(data.email, data.password)
 			.subscribe(() => {
-				this.router.navigateByUrl('/dashboard')
+				this.router.navigateByUrl('/dashboard');
 			}, err => {
-				alert("login failed")
-			})
+				console.log(err);
+				switch (err.status) {
+					case 401:
+						this.formMessageStatus$.next({
+							message: 'Invalid Credentials',
+							error: true
+						});
+						break;
+					default:
+						this.formMessageStatus$.next({
+							message: 'Try again later',
+							error: true
+						});
+						break;
+				};
+				setTimeout(() => {
+					this.formMessageStatus$.next({
+						message: 'Submit',
+						error: false
+					});
+				}, 2000);
+			});
+
+
 		// .pipe(
 		// 	tap((user) => {
 		// 		console.log(user);

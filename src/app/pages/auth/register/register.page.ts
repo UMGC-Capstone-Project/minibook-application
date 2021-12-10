@@ -1,25 +1,27 @@
+import { IFormMessageStatus } from './../../../common/interfaces/form-message-status.interface';
+import { AuthStoreService } from 'src/app/pages/auth/services/auth-store.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, HttpOptions, HttpResponse } from '@capacitor-community/http';
-import { Platform } from '@ionic/angular';
-import { from, Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.page.html',
-	styleUrls: [ './register.page.scss' ]
+	styleUrls: ['./register.page.scss']
 })
 export class RegisterPage implements OnInit {
-	isSubmitted: boolean = false;
-	isError: IError;
+	isSubmitted = false;
+
+	formMessageStatus$ = new BehaviorSubject<IFormMessageStatus>({
+		message: 'Submit',
+		error: false,
+	});
 
 	form: IUserFormGroup = this.formBuilder.group({
-		displayname: [ 'JohnDoe42', [ Validators.required ] ],
-		firstname: [ 'john', [ Validators.required ] ],
-		lastname: [ 'doe', [ Validators.required ] ],
+		displayname: ['JohnDoe42', [Validators.required]],
+		firstname: ['john', [Validators.required]],
+		lastname: ['doe', [Validators.required]],
 		email: [
 			'john@minibook.io',
 			[
@@ -28,17 +30,17 @@ export class RegisterPage implements OnInit {
 				Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')
 			]
 		],
-		password: [ '123456789', [ Validators.minLength(6), Validators.required ] ],
-		passwordConfirm: [ '123456789', [ Validators.required ] ],
-		termsOfService: [ false, [ Validators.required, Validators.requiredTrue ] ]
+		password: ['123456789', [Validators.minLength(6), Validators.required]],
+		passwordConfirm: ['123456789', [Validators.required]],
+		termsOfService: [false, [Validators.required, Validators.requiredTrue]]
 	}) as IUserFormGroup;
 
 	constructor(
-		private authService: AuthService,
+		private authStoreService: AuthStoreService,
 		private router: Router,
-		private formBuilder: FormBuilder) {}
+		private formBuilder: FormBuilder) { }
 
-	ngOnInit() {}
+	ngOnInit() { }
 
 	get errorControl() {
 		return this.form.controls;
@@ -53,38 +55,32 @@ export class RegisterPage implements OnInit {
 		}
 		const { passwordConfirm, termsOfService, ...results } = this.form.value;
 		//... move all this logic out to an HTTPServiceModule
-		const postResults = this.postRequest(
-			`${environment.apiUrl}/auth/register`,
-			results
-		).subscribe((results) => {
-			const _results: UserDto = results.data;
-			// probably should do more error handling here ex network connection error.
-			if (results.status === 400) {
-				console.log('an erro has happened ', results.data);
-				this.isError = results.data as IError;
-				return;
-			}
-			this.router.navigate([ '/confirmation' ]);
-		});
-		setTimeout(() => {
-			postResults.unsubscribe();
-			this.isError = {
-				statusCode: 200,
-				message: 'Submit'
+		this.authStoreService.register(results).subscribe((data) => {
+			console.log(data);
+			this.router.navigate(['/confirmation']);
+		}, err => {
+			console.log(err);
+			switch (err.status) {
+				case 400:
+					this.formMessageStatus$.next({
+						message: err.error.message,
+						error: true
+					});
+					break;
+				default:
+					this.formMessageStatus$.next({
+						message: 'Try again later',
+						error: true
+					});
+					break;
 			};
-			this.isError = null;
-		}, 5000);
-	}
-
-	postRequest(url: string, data: any): Observable<HttpResponse> {
-		const options: HttpOptions = {
-			url,
-			data: data,
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		};
-		return from(Http.post(options));
+			setTimeout(() => {
+				this.formMessageStatus$.next({
+					message: 'Submit',
+					error: false
+				});
+			}, 2000);
+		});
 	}
 }
 
@@ -113,13 +109,3 @@ interface IUserFormGroup extends FormGroup {
 	};
 }
 
-interface UserDto {
-	id: number;
-	email: string;
-	displayname: string;
-}
-
-interface IError {
-	message: string;
-	statusCode: number;
-}

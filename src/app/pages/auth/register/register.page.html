@@ -68,15 +68,9 @@
           <span class="error ion-padding" *ngIf="isSubmitted && errorControl.termsOfService.errors?.required">
             Accepting Terms of Service is required.
           </span>
-          <ion-button type="submit" expand="block" [color]="!isError ? 'dark' : 'danger'">
-            <span class="error ion-padding" *ngIf="!isError; else elseTemplate">
-              Submit
-            </span>
-            <ng-template #elseTemplate>
-              {{isError.message}}
-            </ng-template>
-          </ion-button>
-          <ion-button expand="full" fill="clear" [routerLink]="['/auth/ogin']">Login</ion-button>
+          <ion-button type="submit" [color]="!(formMessageStatus$ | async).error ? 'dark' : 'danger'" expand="block">
+            {{(formMessageStatus$ | async).message}}</ion-button>
+          <ion-button expand="full" fill="clear" [routerLink]="['/auth/login']">Login</ion-button>
         </form>
       </ion-card-content>
     </ion-card>

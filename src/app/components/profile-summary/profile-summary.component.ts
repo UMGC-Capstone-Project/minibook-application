@@ -1,3 +1,5 @@
+import { BehaviorSubject } from 'rxjs';
+import { IUser } from './../../pages/profile/profile.page';
 import { AuthStoreService } from './../../pages/auth/services/auth-store.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -9,14 +11,18 @@ import { PhotoService } from 'src/app/services/photo.service';
 })
 export class ProfileSummaryComponent implements OnInit {
 
+  @Input() isPublished: boolean;
+  @Input() countConnections = 0;
+
   constructor(public authStoreService: AuthStoreService, public photoService: PhotoService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   addPhotoToGallery() {
     this.photoService.addNewToGallery();
   }
-  
+
   onFileSelect(ev: any) {
     console.log(ev);
   }

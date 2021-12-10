@@ -13,9 +13,9 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root'
 })
 export class AuthService {
-	authState = new BehaviorSubject(false)
+	authState = new BehaviorSubject(false);
 
-	isAutenticated: boolean = false;
+	isAutenticated = false;
 
 	constructor(
 		private httpClient: HttpClient,
@@ -33,8 +33,8 @@ export class AuthService {
 		);
 		// await this.storage.set('USER_INFO', data);
 		// console.log(data)
-		// const results = 
+		// const results =
 		// this.storageService.get('USER_INFO')
-	
+
 	}
 }
