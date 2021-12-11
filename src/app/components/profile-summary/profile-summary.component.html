@@ -10,14 +10,14 @@
     <input #fileUpload (change)="onFileSelect($event)" style="display: none" type="file" />
 
     <ion-avatar (click)="addPhotoToGallery()" style="cursor: pointer" class="ion-margin-auto">
-      <ion-img *ngIf="(authStoreService.user$ | async).avatar" [src]="(authStoreService.user$ | async).avatar">
+      <ion-img *ngIf="(user | async).avatar" [src]="(user | async).avatar.url">
       </ion-img>
     </ion-avatar>
 
-    <ion-card-title class="ion-margin-top"> {{ (authStoreService.user$ | async).firstname }} {{ (authStoreService.user$
+    <ion-card-title class="ion-margin-top"> {{ (user | async).firstname }} {{ (user
       | async).lastname }} </ion-card-title>
       <ion-badge color="dark" style="margin-top: 5px;">
-        {{isPublished ? 'Published' : 'Not Published'}}
+        {{(user | async).isPublished ? 'Published' : 'Not Published'}}
         <!-- {{isPublished === 'walking' ? 'steps' : 'km'}} -->
       </ion-badge>
   </ion-card-header>
@@ -34,11 +34,11 @@
     </div> -->
     <div class="connections" style="cursor: pointer" routerLink="/followers">
       <span>Followers</span>
-      <ion-text color="primary">{{followers}}</ion-text>
+      <ion-text color="primary">{{(user |async).followers.length}}</ion-text>
     </div>
     <div class="connections" style="cursor: pointer" routerLink="/following">
       <span>Following</span>
-      <ion-text color="primary">{{following}}</ion-text>
+      <ion-text color="primary">{{(user |async).following.length}}</ion-text>
     </div>
     <ion-card-subtitle class="ion-text-center" color="dark">Manage your Connections</ion-card-subtitle>
   </ion-card-content>

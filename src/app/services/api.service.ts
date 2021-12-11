@@ -92,4 +92,14 @@ export class ApiService {
       }
     });
   }
+
+  getUserProfile(id: number) {
+    console.log(id);
+    const token = this.getToken();
+    return this.httpClient.get(`${environment.apiUrl}/users/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
 }
