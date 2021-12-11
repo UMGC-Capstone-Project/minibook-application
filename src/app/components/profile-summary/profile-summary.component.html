@@ -10,7 +10,7 @@
     <input #fileUpload (change)="onFileSelect($event)" style="display: none" type="file" />
 
     <ion-avatar (click)="addPhotoToGallery()" style="cursor: pointer" class="ion-margin-auto">
-      <ion-img *ngIf="(user | async).avatar" [src]="(user | async).avatar.url">
+      <ion-img *ngIf="(user | async).avatar" [src]="(user | async).avatar">
       </ion-img>
     </ion-avatar>
 

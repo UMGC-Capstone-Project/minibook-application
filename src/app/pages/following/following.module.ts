@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,6 +10,7 @@ import { FollowingPage } from './following.page';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,

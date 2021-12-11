@@ -7,9 +7,9 @@
   </div>
   <ion-card-header class="ion-text-center">
     <ion-avatar class="ion-margin-auto">
-      <ion-img *ngIf="connection.avatar">
-      </ion-img>
+      <ion-img src="{{user.avatar}}"></ion-img>
     </ion-avatar>
-    <ion-card-title class="ion-margin-top"> {{ connection.firstname }} {{ connection.lastname }} </ion-card-title>
+    <ion-card-title class="ion-margin-top"> {{ user.firstname }} {{ user.lastname }}
+    </ion-card-title>
   </ion-card-header>
 </ion-card>

@@ -1,10 +1,11 @@
+import { ApiService } from 'src/app/services/api.service';
+import { BlankUser } from './../../profile.page';
 import { map } from 'rxjs/operators';
 
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IUser } from '../../profile.page';
-import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Component({
@@ -15,24 +16,7 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
 export class UserProfileComponent implements OnInit, OnDestroy {
 
 
-  user$ = new BehaviorSubject<IUser>(
-    {
-      birthday: '',
-      country: '',
-      displayname: '',
-      email: '',
-      firstname: '',
-      gender: '',
-      followers: [],
-      following: [],
-      id: 0,
-      isPublished: true,
-      lastname: '',
-      location: '',
-      password: '',
-      phonenumber: ''
-    }
-  );
+  user$ = new BehaviorSubject<IUser>(BlankUser);
 
   photos = [
     '1',
@@ -47,7 +31,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.route.params.subscribe(params => {
       this.apiService.getUserProfile(+params.id).subscribe((data) => {
-        console.log(data);
+        console.log(`UserProfileComponent: ${JSON.stringify(data)}`);
         this.user$.next((data as IUser));
       }, err => {
         console.log(err);

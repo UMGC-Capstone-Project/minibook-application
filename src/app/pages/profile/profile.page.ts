@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { ApiService } from './../../services/api.service';
 import { UserService } from './../auth/services/user.service';
 import { BehaviorSubject } from 'rxjs';
@@ -10,24 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  user$ = new BehaviorSubject<IUser>(
-    {
-      birthday: '',
-      country: '',
-      displayname: '',
-      email: '',
-      firstname: '',
-      gender: '',
-      followers: [],
-      following: [],
-      id: 0,
-      isPublished: true,
-      lastname: '',
-      location: '',
-      password: '',
-      phonenumber: ''
-    }
-  );
+  user$ = new BehaviorSubject<IUser>(BlankUser);
 
   photos = [
     '1',
@@ -56,20 +40,57 @@ export class ProfilePage implements OnInit {
   }
 }
 
-export interface IUser {
-  avatar?: { id: number; url: string; key: string };
+// export interface IUser {
+//   avatar?: { id: number; url: string; key: string };
+//   birthday: string;
+//   country: string;
+//   displayname: string;
+//   email: string;
+//   firstname: string;
+//   gender: string;
+//   id: number;
+//   isPublished: boolean;
+//   followers: [];
+//   following: [];
+//   lastname: string;
+//   location: string;
+//   password: string;
+//   phonenumber: string;
+// }
+
+
+export class IUser {
+  id: number;
   birthday: string;
   country: string;
+  created_at: Date;
   displayname: string;
   email: string;
   firstname: string;
-  gender: string;
-  id: number;
-  isPublished: boolean;
-  followers: [];
-  following: [];
   lastname: string;
+  gender: string;
   location: string;
-  password: string;
+  isPublished: boolean;
   phonenumber: string;
+  followers: any[];
+  following: any[];
+  avatar: string;
 }
+
+export const BlankUser: IUser = {
+  id: 0,
+  birthday: '',
+  country: '',
+  created_at: undefined,
+  displayname: '',
+  email: '',
+  firstname: '',
+  lastname: '',
+  gender: '',
+  location: '',
+  isPublished: false,
+  phonenumber: '',
+  followers: [],
+  following: [],
+  avatar: ''
+};
