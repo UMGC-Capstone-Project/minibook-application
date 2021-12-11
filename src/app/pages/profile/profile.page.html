@@ -7,13 +7,13 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col style="height: 256px; margin-bottom: 30px; max-width: 300px;">
+      <ion-col style="height: 300px; margin-bottom: 50px; max-width: 300px;">
         <ion-card style="text-align: -webkit-center;">
           <app-profile-summary isPublished="{{(user$ | async).isPublished}}" followers="{{(user$ | async).followers.length}}" following= "{{(user$ | async).following.length}}"></app-profile-summary>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card size="true" style="height: 256px; text-align: -webkit-center;">
+        <ion-card size="true" style="height: 288px; text-align: -webkit-center;">
           <h3>Information</h3>
           <ion-row>
             <ion-col>

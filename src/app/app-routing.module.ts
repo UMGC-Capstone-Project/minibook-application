@@ -57,6 +57,14 @@ const routes: Routes = [
 		path: 'debug',
 		loadChildren: () => import('./pages/debug/debug.module').then(m => m.DebugPageModule)
 	},
+	{
+		path: 'following',
+		loadChildren: () => import('./pages/following/following.module').then(m => m.FollowingPageModule)
+	},
+	{
+		path: 'followers',
+		loadChildren: () => import('./pages/followers/followers.module').then(m => m.FollowersPageModule)
+	},
 	// Wildcard route
 	{ path: '**', component: PageNotFoundComponent },
 ];

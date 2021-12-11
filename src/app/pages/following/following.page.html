@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>following</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-card>
+      <h2 style="text-align: center;">following</h2>
+      <ion-row>
+        <!-- <ion-col sizeXs="12" sizeSm="6" size="4" sizeMd="4" sizeLg="3" sizeXl="2"  style="display: flex; justify-content: center;" *ngFor="let connection of connections"></ion-col> -->
+        <ion-col sizeXs="12" sizeSm="6" size="4" sizeMd="4" sizeLg="3" sizeXl="2"
+          style="display: flex; justify-content: center;" *ngFor="let following of following$ | async">
+          <!-- <p>{{following.userId}}</p> -->
+          <ion-card>
+            <div class="backdrop">
+              <div class="background-one"></div>
+              <div class="half-ellipse"></div>
+              <div class="background-two"></div>
+              <div class="background-three"></div>
+            </div>
+            <ion-card-header class="ion-text-center">
+              <ion-avatar class="ion-margin-auto">
+                <ng-container *ngIf="following.avatar; else elseTemplate">
+                  <ion-img>
+                  </ion-img>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <ion-img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Faenza-avatar-default-symbolic.svg/1024px-Faenza-avatar-default-symbolic.svg.png">
+                  </ion-img>
+                </ng-template>
+              </ion-avatar>
+              <ion-card-title class="ion-margin-top"> {{ following.firstname }} {{ following.lastname }}
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>

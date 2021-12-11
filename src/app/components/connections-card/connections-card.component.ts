@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/pages/auth/model/User';
 import { AuthStoreService } from 'src/app/pages/auth/services/auth-store.service';
 
 @Component({
@@ -7,23 +8,12 @@ import { AuthStoreService } from 'src/app/pages/auth/services/auth-store.service
   styleUrls: ['./connections-card.component.scss'],
 })
 export class ConnectionsCardComponent implements OnInit {
-  @Input() connection: Connection;
+  @Input() connection: User;
 
   constructor() {
-    this.connection = {
-      avatar: '',
-      firstname: 'John',
-      lastname: 'Doe'
-    }
+    console.log(this.connection);
   }
 
   ngOnInit() { }
 
-}
-
-
-class Connection {
-  avatar: string;
-  firstname: string;
-  lastname: string
 }

@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+
   private subject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -38,6 +39,7 @@ export class ApiService {
 
   getFeed() {
     const token = this.getToken();
+    console.log(`token: ${token}`);
     return this.httpClient.get<any[]>(`${environment.apiUrl}/feed`, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -58,6 +60,28 @@ export class ApiService {
         'Authorization': `Bearer ${token}`
       }
     });
+  }
+
+  getFollowings() {
+    const token = this.getToken();
+    return this.httpClient.get(`${environment.apiUrl}/users/followings`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+  }
+
+  getFollowers() {
+    const token = this.getToken();
+    return this.httpClient.get(`${environment.apiUrl}/users/followers`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
   }
 
   getMyProfile() {

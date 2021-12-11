@@ -13,7 +13,18 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { ProfileSummaryComponent } from './profile-summary/profile-summary.component';
 import { ConnectionsCardComponent } from './connections-card/connections-card.component';
 
-const components = [ConnectionsCardComponent, ProfileSummaryComponent, LogoButtonComponent, CreatePostComponent, DefaultNavComponent, DefaultFooterComponent, AnimBirdComponent, PageNotFoundComponent, SettingsComponent, PopoverComponent];
+const components = [
+	ConnectionsCardComponent,
+	ProfileSummaryComponent,
+	LogoButtonComponent,
+	CreatePostComponent,
+	DefaultNavComponent,
+	DefaultFooterComponent,
+	AnimBirdComponent,
+	PageNotFoundComponent,
+	SettingsComponent,
+	PopoverComponent
+];
 
 @NgModule({
 	imports: [
