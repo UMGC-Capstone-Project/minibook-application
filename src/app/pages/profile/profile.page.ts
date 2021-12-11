@@ -18,6 +18,8 @@ export class ProfilePage implements OnInit {
       email: '',
       firstname: '',
       gender: '',
+      followers: [],
+      following: [],
       id: 0,
       isPublished: true,
       lastname: '',
@@ -52,8 +54,6 @@ export class ProfilePage implements OnInit {
       console.log(err);
     });
   }
-
-
 }
 
 export interface IUser {
@@ -66,6 +66,8 @@ export interface IUser {
   gender: string;
   id: number;
   isPublished: boolean;
+  followers: [];
+  following: [];
   lastname: string;
   location: string;
   password: string;

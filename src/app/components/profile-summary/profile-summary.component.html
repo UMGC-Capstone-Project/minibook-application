@@ -32,10 +32,14 @@
       <span>Who viewed your profile</span>
       <ion-text color="primary">467</ion-text>
     </div> -->
-    <div class="connections">
-      <span>Friends</span>
-      <ion-text color="primary">{{countConnections}}</ion-text>
+    <div class="connections" style="cursor: pointer" routerLink="/followers">
+      <span>Followers</span>
+      <ion-text color="primary">{{followers}}</ion-text>
     </div>
-    <ion-card-subtitle style="cursor: pointer" routerLink="/connections" class="ion-text-center" color="dark">Manage your Friends</ion-card-subtitle>
+    <div class="connections" style="cursor: pointer" routerLink="/following">
+      <span>Following</span>
+      <ion-text color="primary">{{following}}</ion-text>
+    </div>
+    <ion-card-subtitle class="ion-text-center" color="dark">Manage your Connections</ion-card-subtitle>
   </ion-card-content>
 </ion-card>

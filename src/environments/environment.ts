@@ -1,6 +1,6 @@
 export const environment = {
-  imgUrl: 'undefined',
-  apiUrl: 'http://test/',
-  baseUrl: 'undefined',
-  production: true
+  imgUrl: 'http://imgs.minibook.io',
+  apiUrl: 'http://localhost:3000/v1',
+  baseUrl: 'http://localhost:8100',
+  production: false
 };

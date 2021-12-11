@@ -9,7 +9,7 @@
     <ion-row>
       <ion-col style="height: 256px; margin-bottom: 30px; max-width: 300px;">
         <ion-card style="text-align: -webkit-center;">
-          <app-profile-summary isPublished="{{(user$ | async).isPublished}}" countConnections="{{5}}"></app-profile-summary>
+          <app-profile-summary isPublished="{{(user$ | async).isPublished}}" followers="{{(user$ | async).followers.length}}" following= "{{(user$ | async).following.length}}"></app-profile-summary>
         </ion-card>
       </ion-col>
       <ion-col>
