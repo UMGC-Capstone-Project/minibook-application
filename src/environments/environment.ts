@@ -1,6 +1,6 @@
 export const environment = {
-  imgUrl: undefined,
-  apiUrl: undefined,
-  baseUrl: undefined,
-  production: 'undefined'
+  imgUrl: 'undefined',
+  apiUrl: 'http://test/',
+  baseUrl: 'undefined',
+  production: true
 };
