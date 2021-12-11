@@ -3,6 +3,7 @@ import { ApiService } from './../../services/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { AuthStoreService } from '../auth/services/auth-store.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,6 +45,10 @@ export class DashboardPage implements OnInit {
 
   async onChange(ev: any) {
     this.inputChange$.next(ev.detail.value);
+  }
+
+  getTimeAgo(pTime: string) {
+    return moment(pTime).fromNow(true).toString();
   }
 
   async onClick() {
