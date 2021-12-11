@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.dev';
+import { environment } from './../../environments/environment';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
